@@ -1,0 +1,2 @@
+php_value auto_prepend_file "C:\xampp\htdocs\customer-feedback-system\includes\header.php"
+php_value auto_append_file "C:\xampp\htdocs\customer-feedback-system\includes\footer.php"
