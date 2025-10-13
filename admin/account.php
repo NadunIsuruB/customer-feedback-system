@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 $pageTitle = 'Account';
 ?>
 <a class="btn" href="index.php">← Dashboard</a>
-<div class="card">
+<div class="card" style="max-width:400px;">
     <h2>Change Password</h2>
     <?php if ($msg): ?><p class="small"><?= htmlspecialchars($msg) ?></p><?php endif; ?>
     <form method="post">

@@ -42,8 +42,9 @@ try {
 
 
     // insert feedback
-    $fb = $pdo->prepare('INSERT INTO feedback (customer_id,product_id,rating,comment) VALUES (?,?,?,?)');
-    $fb->execute([$cid, $product_id, $rating, $comment ?: null]);
+    $stmt = $pdo->prepare('INSERT INTO feedback (product_id, customer_id, rating, comment, state, created_at)
+            VALUES (?, ?, ?, ?, "Inactive", NOW())');
+    $stmt->execute([$product_id, $cid, $rating, $comment ?: null]);
 
 
     $pdo->commit();

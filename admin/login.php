@@ -22,7 +22,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 $pageTitle = 'Login';
 ?>
-<div class="card">
+<div class="card" style="max-width:400px;">
     <h2>Admin Login</h2>
     <?php if (!empty($err)): ?><p class="small" style="color:#b00;"><?= htmlspecialchars($err) ?></p><?php endif; ?>
     <form method="post">

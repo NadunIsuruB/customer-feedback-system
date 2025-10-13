@@ -74,7 +74,7 @@ $pageTitle = 'Products';
 </div>
 
 <?php if ($showForm): ?>
-    <div class="card">
+    <div class="card" style="width: 400px;">
         <h3><?= $edit ? 'Edit Product' : 'Add Product' ?></h3>
         <form method="post">
             <?= csrf_field() ?>

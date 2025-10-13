@@ -33,7 +33,7 @@ $fb = $pdo->prepare(
     "SELECT f.*, c.name, c.email
      FROM feedback f
      JOIN customers c ON c.customer_id = f.customer_id
-    WHERE f.product_id = ?
+    WHERE f.product_id = ? AND f.state='Active'
  ORDER BY f.created_at DESC
     LIMIT 50"
 );
@@ -78,7 +78,7 @@ $pageTitle = 'Product';
     <?php if (!$feedback): ?>
         <p class="small">No feedback yet.</p>
         <?php else: foreach ($feedback as $f): ?>
-            <div class="card">
+            <div class="card" style="width: 70vw;">
                 <div><strong><?= htmlspecialchars($f['name']) ?></strong> · ⭐ <?= (int)$f['rating'] ?> ·
                     <span class="small"><?= htmlspecialchars($f['created_at']) ?></span>
                 </div>
