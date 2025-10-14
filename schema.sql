@@ -55,8 +55,8 @@ KEY ix_feedback_created (created_at)
 
 -- seed one admin (change password after first login)
 INSERT INTO users (username, password_hash)
-VALUES ('admin', '$2y$10$TjYb1k1T7IY9tV5mW7n2UeS8zWm8h5kZx4tJQ5JvZ4x4h5gqQkWj6');
--- The hash above is for password: Admin@123 (bcrypt). Change it immediately in UI below.
+VALUES ('admin', '$2y$10$pPrAeQ0sgvUvYXIokE6xr.gDdWOWho2aqvTeYBXtqf3x6dqFcaoGK');
+-- The hash above is for password: Admin@123.
 
 -- some products
 INSERT INTO products (name, category, price_cents) VALUES
