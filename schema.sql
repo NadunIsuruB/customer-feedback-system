@@ -1,10 +1,10 @@
--- create database (rename if you want)
+-- create database
 CREATE DATABASE IF NOT EXISTS feedback_sys
 DEFAULT CHARACTER SET utf8mb4
 COLLATE utf8mb4_unicode_ci;
 USE feedback_sys;
 
--- admins/users table (for back office)
+-- admins/users table
 CREATE TABLE IF NOT EXISTS users (
 user_id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 username VARCHAR(80) NOT NULL UNIQUE,
@@ -53,10 +53,10 @@ KEY ix_feedback_created (created_at)
 ) ENGINE=InnoDB;
 
 
--- seed one admin (change password after first login)
+-- seed one admin
 INSERT INTO users (username, password_hash)
 VALUES ('admin', '$2y$10$pPrAeQ0sgvUvYXIokE6xr.gDdWOWho2aqvTeYBXtqf3x6dqFcaoGK');
--- The hash above is for password: Admin@123.
+-- The password: Admin@123.
 
 -- some products
 INSERT INTO products (name, category, price_cents) VALUES
