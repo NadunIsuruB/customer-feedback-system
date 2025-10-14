@@ -1,14 +1,15 @@
 /* Root + Global Reset */
 :root {
-    font-family: system-ui, Arial, sans-serif;
+  font-family: system-ui, Arial, sans-serif;
     --header-h: 60px;
     --footer-h: 45px;
   }
-  
-  html, body {
-    height: 100%;
-    margin: 0;
-    overflow: hidden;           /* no body scroll */
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+    /* no body scroll */
     background: #f8f8f8;
     color: #222;
   }
@@ -16,7 +17,9 @@
   /* Fixed Header / Footer */
   header {
     position: fixed;
-    top: 0; left: 0; right: 0;
+  top: 0;
+    left: 0;
+    right: 0;
     height: var(--header-h);
     background: #007bff;
     color: #fff;
@@ -24,13 +27,15 @@
     align-items: center;
     justify-content: space-between;
     padding: 0 20px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     z-index: 1000;
   }
   
   footer {
     position: fixed;
-    bottom: 0; left: 0; right: 0;
+  bottom: 0;
+    left: 0;
+    right: 0;
     height: var(--footer-h, 45px);
     background: #f1f1f1;
     color: #444;
@@ -40,99 +45,113 @@
     z-index: 1000;
     padding: 0 20px;
   }
-  
-  footer > * {
-    margin: 0 !important;
-    text-align: center !important;
+footer>* {
+  margin: 0 !important;
+  text-align: center !important;
+}
+
+/* Scrollable Container */
+.container {
+  display: flex;
+  position: fixed;
+  top: var(--header-h);
+  bottom: var(--footer-h);
+  left: 0;
+  right: 0;
+  overflow-y: auto;
+  max-width: 100vw;
+  margin: 0 auto;
+  padding: 16px;
+  margin-bottom: 1vh;
+  background: #fff;
+  box-sizing: border-box;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Optional scrollbar styling */
+.container::-webkit-scrollbar {
+  width: 8px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+/* Cards / Grid / Buttons / Inputs */
+.card {
+  width: 90vw;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  padding: 16px;
+  margin: 12px;
+  background: #fafafa;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
   
-  /* Scrollable Container */
-  .container {
+  .feedback-list {
     display: flex;
-    position: fixed;
-    top: var(--header-h);
-    bottom: var(--footer-h);
-    left: 0;
-    right: 0;
-    overflow-y: auto;
-    max-width: 100vw;
-    margin: 0 auto;
-    padding: 16px;
-    margin-bottom: 1vh;
-    background: #fff;
-    box-sizing: border-box;
     flex-direction: column;
     align-items: center;
-  }
-  
-  /* Optional scrollbar styling */
-  .container::-webkit-scrollbar { width: 8px; }
-  .container::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 4px;
-  }
-  
-  /* Cards / Grid / Buttons / Inputs */
-  .card {
-    width: 90vw;
-    border: 1px solid #ddd;
-    border-radius: 12px;
-    padding: 16px;
-    margin: 12px;
-    background: #fafafa;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
   }
   
   .grid {
     display: grid;
     gap: 16px;
   }
-  .grid.cols-3 {
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  }
-  
-  .badge {
-    padding: 2px 8px;
-    border: 1px solid #ddd;
-    border-radius: 999px;
-    font-size: .8rem;
-    background: #fff;
-  }
-  
-  .btn {
-    align-self: flex-start;
-    display: inline-block;
-    padding: 8px 12px;
-    margin: 5px;
-    border-radius: 8px;
-    border: 1px solid #333;
-    background: #fff;
-    text-decoration: none;
-    color: #333;
-    cursor: pointer;
-    transition: background 0.2s ease;
-  }
-  .btn:hover {
-    background: #007bff;
-    color: #fff;
-  }
-  
-  input, textarea, select {
-    width: 100%;
-    padding: 8px 0;
-    padding-left: 2px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 0.95rem;
-  }
-  
-  label {
-    font-size: .9rem;
-    color: #333;
-    margin-top: 8px;
-    display: block;
-  }
-  
-  .rating { font-weight: 700; }
-  .small { color: #666; font-size: .85rem; }
-  
+
+.grid.cols-3 {
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+}
+
+.badge {
+  padding: 2px 8px;
+  border: 1px solid #ddd;
+  border-radius: 999px;
+  font-size: .8rem;
+  background: #fff;
+}
+
+.btn {
+  align-self: flex-start;
+  display: inline-block;
+  padding: 8px 12px;
+  margin: 5px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #fff;
+  text-decoration: none;
+  color: #333;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.btn:hover {
+  background: #007bff;
+  color: #fff;
+}
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 8px 0;
+  padding-left: 2px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 0.95rem;
+}
+
+label {
+  font-size: .9rem;
+  color: #333;
+  margin-top: 8px;
+  display: block;
+}
+.rating {
+  font-weight: 700;
+}
+.small {
+  color: #666;
+  font-size: .85rem;
+}

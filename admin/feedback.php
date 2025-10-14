@@ -49,18 +49,20 @@ $pageTitle = 'Feedback';
 <div class="card">
     <h2>Feedback</h2>
     <form method="get"><input name="q" placeholder="Search product/customer/comment" value="<?= htmlspecialchars($q) ?>"></form>
-    <?php foreach ($data as $r): ?>
-        <div class="card" style="width: 40%;">
-            <div><strong><?= htmlspecialchars($r['product_name']) ?></strong> · ⭐ <?= (int)$r['rating'] ?> · <span class="small"><?= htmlspecialchars($r['created_at']) ?></span></div>
-            <div class="small">By <?= htmlspecialchars($r['customer_name']) ?> (<?= htmlspecialchars($r['email']) ?>)</div>
-            <?php if ($r['comment']): ?><p><?= nl2br(htmlspecialchars($r['comment'])) ?></p><?php endif; ?>
-            <?php if ($r['state'] === 'Inactive'): ?>
-                <a class="btn" href="feedback.php?approve=<?= (int)$r['feedback_id'] ?>">Approve</a>
-            <?php else: ?>
-                <a class="btn" href="feedback.php?deactivate=<?= (int)$r['feedback_id'] ?>">Deactivate</a>
-            <?php endif; ?>
-            <a class="btn" href="feedback.php?delete=<?= (int)$r['feedback_id'] ?>" onclick="return confirm('Delete this feedback?');">Delete</a>
-        </div>
-    <?php endforeach; ?>
+    <div class="feedback-list">
+        <?php foreach ($data as $r): ?>
+            <div class="card" style="width: 60%;">
+                <div><strong><?= htmlspecialchars($r['product_name']) ?></strong> · ⭐ <?= (int)$r['rating'] ?> · <span class="small"><?= htmlspecialchars($r['created_at']) ?></span></div>
+                <div class="small">By <?= htmlspecialchars($r['customer_name']) ?> (<?= htmlspecialchars($r['email']) ?>)</div>
+                <?php if ($r['comment']): ?><p><?= nl2br(htmlspecialchars($r['comment'])) ?></p><?php endif; ?>
+                <?php if ($r['state'] === 'Inactive'): ?>
+                    <a class="btn" href="feedback.php?approve=<?= (int)$r['feedback_id'] ?>">Approve</a>
+                <?php else: ?>
+                    <a class="btn" href="feedback.php?deactivate=<?= (int)$r['feedback_id'] ?>">Deactivate</a>
+                <?php endif; ?>
+                <a class="btn" href="feedback.php?delete=<?= (int)$r['feedback_id'] ?>" onclick="return confirm('Delete this feedback?');">Delete</a>
+            </div>
+        <?php endforeach; ?>
+    </div>
     <?php if (!$data): ?><p class="small">No feedback found.</p><?php endif; ?>
 </div>
