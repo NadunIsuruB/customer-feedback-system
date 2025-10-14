@@ -1,15 +1,16 @@
 /* Root + Global Reset */
 :root {
   font-family: system-ui, Arial, sans-serif;
-    --header-h: 60px;
+  --header-h: 60px;
     --footer-h: 45px;
   }
+
 html,
 body {
   height: 100%;
   margin: 0;
   overflow: hidden;
-    /* no body scroll */
+  /* no body scroll */
     background: #f8f8f8;
     color: #222;
   }
@@ -18,7 +19,7 @@ body {
   header {
     position: fixed;
   top: 0;
-    left: 0;
+  left: 0;
     right: 0;
     height: var(--header-h);
     background: #007bff;
@@ -28,13 +29,13 @@ body {
     justify-content: space-between;
     padding: 0 20px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
+  z-index: 1000;
   }
   
   footer {
     position: fixed;
   bottom: 0;
-    left: 0;
+  left: 0;
     right: 0;
     height: var(--footer-h, 45px);
     background: #f1f1f1;
@@ -45,6 +46,7 @@ body {
     z-index: 1000;
     padding: 0 20px;
   }
+
 footer>* {
   margin: 0 !important;
   text-align: center !important;
@@ -88,18 +90,26 @@ footer>* {
   margin: 12px;
   background: #fafafa;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  }
-  
-  .feedback-list {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .grid {
-    display: grid;
-    gap: 16px;
-  }
+}
+.card table.small th {
+  width: 150px;
+  color: #555;
+  text-align: left;
+}
+
+.card table.small td {
+  color: #222;
+}
+.feedback-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.grid {
+  display: grid;
+  gap: 16px;
+}
 
 .grid.cols-3 {
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -131,6 +141,7 @@ footer>* {
   background: #007bff;
   color: #fff;
 }
+
 input,
 textarea,
 select {
@@ -148,9 +159,11 @@ label {
   margin-top: 8px;
   display: block;
 }
+
 .rating {
   font-weight: 700;
 }
+
 .small {
   color: #666;
   font-size: .85rem;

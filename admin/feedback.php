@@ -2,6 +2,8 @@
 require __DIR__ . '/auth.php';
 require __DIR__ . '/../config/db.php';
 
+$adminId = (int)($_SESSION['fb_admin_auth'] ?? 0);
+$pdo->prepare('SET @actor_id := ?')->execute([$adminId]);
 
 // delete
 if (($_GET['delete'] ?? '') !== '') {
@@ -48,21 +50,56 @@ $pageTitle = 'Feedback';
 <a class="btn" href="index.php">← Dashboard</a>
 <div class="card">
     <h2>Feedback</h2>
-    <form method="get"><input name="q" placeholder="Search product/customer/comment" value="<?= htmlspecialchars($q) ?>"></form>
-    <div class="feedback-list">
+    <form method="get" style="margin-bottom:10px;">
+        <input name="q" placeholder="Search product / customer / comment"
+            value="<?= htmlspecialchars($q) ?>" style="width:60%;">
+        <button class="btn" type="submit">Search</button>
+    </form>
+
+    <table class="small" style="width:100%; border-collapse:collapse;">
+        <tr>
+            <th align="left">Product</th>
+            <th align="left">Customer</th>
+            <th align="left">Email</th>
+            <th align="center">Rating</th>
+            <th align="left">Comment</th>
+            <th align="center">State</th>
+            <th align="left">Date</th>
+            <th align="center">Actions</th>
+        </tr>
+
         <?php foreach ($data as $r): ?>
-            <div class="card" style="width: 60%;">
-                <div><strong><?= htmlspecialchars($r['product_name']) ?></strong> · ⭐ <?= (int)$r['rating'] ?> · <span class="small"><?= htmlspecialchars($r['created_at']) ?></span></div>
-                <div class="small">By <?= htmlspecialchars($r['customer_name']) ?> (<?= htmlspecialchars($r['email']) ?>)</div>
-                <?php if ($r['comment']): ?><p><?= nl2br(htmlspecialchars($r['comment'])) ?></p><?php endif; ?>
-                <?php if ($r['state'] === 'Inactive'): ?>
-                    <a class="btn" href="feedback.php?approve=<?= (int)$r['feedback_id'] ?>">Approve</a>
-                <?php else: ?>
-                    <a class="btn" href="feedback.php?deactivate=<?= (int)$r['feedback_id'] ?>">Deactivate</a>
-                <?php endif; ?>
-                <a class="btn" href="feedback.php?delete=<?= (int)$r['feedback_id'] ?>" onclick="return confirm('Delete this feedback?');">Delete</a>
-            </div>
+            <tr>
+                <td><?= htmlspecialchars($r['product_name']) ?></td>
+                <td><?= htmlspecialchars($r['customer_name']) ?></td>
+                <td><?= htmlspecialchars($r['email']) ?></td>
+                <td align="center">⭐ <?= (int)$r['rating'] ?></td>
+                <td style="max-width:250px; white-space:pre-wrap;">
+                    <?= htmlspecialchars(mb_strimwidth($r['comment'], 0, 150, '…')) ?>
+                </td>
+                <td align="center">
+                    <span class="badge" style="background:<?= $r['state'] === 'Active' ? '#c8f7c5' : '#f9d0c4' ?>">
+                        <?= htmlspecialchars($r['state']) ?>
+                    </span>
+                </td>
+                <td><?= htmlspecialchars($r['created_at']) ?></td>
+                <td align="center" style="white-space:nowrap;">
+                    <a class="btn" href="feedback_view.php?id=<?= (int)$r['feedback_id'] ?>">View</a>
+                    <?php if ($r['state'] === 'Inactive'): ?>
+                        <a class="btn" href="feedback.php?approve=<?= (int)$r['feedback_id'] ?>">Approve</a>
+                    <?php else: ?>
+                        <a class="btn" href="feedback.php?deactivate=<?= (int)$r['feedback_id'] ?>">Deactivate</a>
+                    <?php endif; ?>
+                    <a class="btn" href="feedback.php?delete=<?= (int)$r['feedback_id'] ?>"
+                        onclick="return confirm('Delete this feedback?');">Delete</a>
+                </td>
+            </tr>
         <?php endforeach; ?>
-    </div>
-    <?php if (!$data): ?><p class="small">No feedback found.</p><?php endif; ?>
+
+        <?php if (!$data): ?>
+            <tr>
+                <td colspan="8" align="center" class="small">No feedback found.</td>
+            </tr>
+        <?php endif; ?>
+    </table>
 </div>

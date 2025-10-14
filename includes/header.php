@@ -11,4 +11,5 @@
 </head>
 
 <body>
+    <header><?= htmlspecialchars($pageTitle ?? 'Customer Feedback System') ?></header>
     <div class="container">

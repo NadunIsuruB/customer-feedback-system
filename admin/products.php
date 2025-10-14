@@ -2,6 +2,8 @@
 require __DIR__ . '/auth.php';
 require __DIR__ . '/../config/db.php';
 
+$adminId = (int)($_SESSION['fb_admin_auth'] ?? 0);
+$pdo->prepare('SET @actor_id := ?')->execute([$adminId]);
 
 // create/update
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
