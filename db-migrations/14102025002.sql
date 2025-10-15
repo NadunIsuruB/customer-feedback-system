@@ -55,7 +55,7 @@ BEGIN
                  '"rating":', NEW.rating, ',',
                  '"state":"', NEW.state, '"',
                  '}'),
-          @actor_id);
+          NEW.customer_id);
 END$$
 
 CREATE TRIGGER trg_feedback_au AFTER UPDATE ON feedback
